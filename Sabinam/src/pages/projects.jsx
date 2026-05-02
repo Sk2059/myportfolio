@@ -31,7 +31,7 @@ const Projects = () => {
   const [oprojects, setoProjects] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/featured")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/featured")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -41,7 +41,7 @@ const Projects = () => {
   }, []);
 
     useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/other-projects")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/other-projects")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 

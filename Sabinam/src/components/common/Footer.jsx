@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: FaGithub, url: 'https://github.com', label: 'GitHub', color: 'hover:text-gray-400' },
-    { icon: FaLinkedin, url: 'https://linkedin.com', label: 'LinkedIn', color: 'hover:text-blue-500' },
+    { icon: FaGithub, url: 'https://github.com/Sk2059', label: 'GitHub', color: 'hover:text-gray-400' },
+    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/sabinam-mahato-706773311/', label: 'LinkedIn', color: 'hover:text-blue-500' },
     { icon: FaTwitter, url: 'https://twitter.com', label: 'Twitter', color: 'hover:text-sky-400' },
     { icon: FaInstagram, url: 'https://instagram.com', label: 'Instagram', color: 'hover:text-pink-500' }
   ];
@@ -42,8 +42,8 @@ const Footer = () => {
 
   const contactInfo = [
     { icon: FaEnvelope, text: '                                                                                                                                                                                                                                                                                                                                                                                hello@portfolio.com', link: 'mailto:hello@portfolio.com' },
-    { icon: FaPhone, text: '+1 (555) 123-4567', link: 'tel:+15551234567' },
-    { icon: FaMapMarkerAlt, text: 'San Francisco, CA', link: '#' }
+    { icon: FaPhone, text: '9815854887', link: '+9779815854887' },
+    { icon: FaMapMarkerAlt, text: 'Biratnagar, Nepal', link: '#' }
   ];
 
   const containerVariants = {

@@ -103,7 +103,7 @@ const Home = () => {
   const [ftech, settech] = useState([]);
 
    useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/featured")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/featured")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -113,7 +113,7 @@ const Home = () => {
   }, []);
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:8000/apis/tech/")
+    fetch("https://backend-nine-beta-78.vercel.app/apis/tech/")
     .then((res)=>res.json())
     .then((data)=>{
       settech(data);
