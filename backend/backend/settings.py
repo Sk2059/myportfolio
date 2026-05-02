@@ -2,11 +2,12 @@
 Django settings for backend project.
 Production-ready version for Vercel + Supabase/PostgreSQL
 """
-
+from dotenv import load_dotenv
 import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -108,7 +109,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # -----------------------
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("POSTGRES_URL"),
+        default=os.environ.get("DATABASE_URL"),
         conn_max_age=600,
         ssl_require=True
     )
