@@ -1,0 +1,39 @@
+/* Navbar Styles */
+.nav-link {
+  @apply relative text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg px-2 py-1;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #2563eb; /* Blue-600 */
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  @apply text-blue-600;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+.mobile-nav-link {
+  @apply text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium block w-full text-center py-3 text-lg border-b border-gray-100 hover:bg-blue-50;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.logo-text {
+  @apply bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent font-bold;
+}
