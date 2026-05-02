@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-m3%)o2k*d-($%*y7n-6ppq2v-78y8y^l12jz%@8k=o8@d9*q)5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -56,8 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React dev server
+   "https://myprortfolio.vercel.app/" , 
+     "http://localhost:3000"
 ]
 
 ROOT_URLCONF = 'backend.urls'
