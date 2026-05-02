@@ -6,11 +6,8 @@ from rest_framework.permissions import AllowAny,IsAdminUser
 from django.http import JsonResponse
 
 
-class home(generics.GenericAPIView):
-    def get(self, request, *args, **kwargs):
-        return JsonResponse({
-            "status": "Backend Running Successfully"
-        })
+def home(request):
+    return JsonResponse({"status": "Backend Running Successfully"})
 
 
 class ContactMessageCreateView(generics.CreateAPIView):
