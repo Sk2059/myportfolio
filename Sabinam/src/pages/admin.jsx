@@ -37,7 +37,7 @@ const Admin = () => {
   const [activeSection, setActiveSection] = useState('projects');
 
    useEffect(() => {
-    fetch("https://backend-nine-beta-78.vercel.app/api/featured")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/featured/")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -47,7 +47,7 @@ const Admin = () => {
   }, []);
 
    useEffect(() => {
-    fetch("https://backend-nine-beta-78.vercel.app/api/other-projects")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/other-projects/")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -66,7 +66,7 @@ const Admin = () => {
   },[]);
 
     useEffect(() => {
-    fetch("https://backend-nine-beta-78.vercel.app/apic/message")   
+    fetch("https://backend-nine-beta-78.vercel.app/apic/message/")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 

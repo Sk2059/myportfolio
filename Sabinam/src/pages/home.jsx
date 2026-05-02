@@ -103,7 +103,7 @@ const Home = () => {
   const [ftech, settech] = useState([]);
 
    useEffect(() => {
-    fetch("https://backend-nine-beta-78.vercel.app/api/featured")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/featured/")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
