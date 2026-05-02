@@ -37,7 +37,7 @@ const Admin = () => {
   const [activeSection, setActiveSection] = useState('projects');
 
    useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/featured")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/featured")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -47,7 +47,7 @@ const Admin = () => {
   }, []);
 
    useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/other-projects")   
+    fetch("https://backend-nine-beta-78.vercel.app/api/other-projects")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -57,7 +57,7 @@ const Admin = () => {
   }, []);
 
     useEffect(()=>{
-    fetch("http://127.0.0.1:8000/apis/tech/")
+    fetch("https://backend-nine-beta-78.vercel.app/apis/tech/")
     .then((res)=>res.json())
     .then((data)=>{
       setOffers(data);
@@ -66,7 +66,7 @@ const Admin = () => {
   },[]);
 
     useEffect(() => {
-    fetch("http://127.0.0.1:8000/apic/message")   
+    fetch("https://backend-nine-beta-78.vercel.app/apic/message")   
       .then((res) => res.json())
       .then((data) => {
         console.log("Projects from backend:", data); 
@@ -138,8 +138,8 @@ const Admin = () => {
   try {
     const res = await fetch(
       isEditing
-        ? `http://127.0.0.1:8000/api/featured/${projectForm.id}/`
-        : `http://127.0.0.1:8000/api/featured/`,
+        ? `https://backend-nine-beta-78.vercel.app//api/featured/${projectForm.id}/`
+        : `https://backend-nine-beta-78.vercel.app//api/featured/`,
       {
         method: isEditing ? 'PATCH' : 'POST', // ✅ PATCH is safer
         body: formData, // ❌ no Content-Type header
@@ -196,7 +196,7 @@ const handleProjectEdit = (item) => {
   const deleteProject = async (id) => {
      const token = localStorage.getItem("access");
 
-      await fetch(`http://127.0.0.1:8000/api/featured/${id}/`, {
+      await fetch(`https://backend-nine-beta-78.vercel.app/api/featured/${id}/`, {
         method: "DELETE",
         headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -221,8 +221,8 @@ const handleOtherSubmit = async (e) => {
   try {
     const res = await fetch(
       isEditing
-        ? `http://127.0.0.1:8000/api/other-projects/${otherForm.id}/`
-        : `http://127.0.0.1:8000/api/other-projects/`,
+        ? `https://backend-nine-beta-78.vercel.app/api/other-projects/${otherForm.id}/`
+        : `https://backend-nine-beta-78.vercel.app/api/other-projects/`,
       {
         method: isEditing ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -268,7 +268,7 @@ const handleOtherSubmit = async (e) => {
   const deleteOtherProject = async(id) => {
     const token = localStorage.getItem("access");
 
-      await fetch(`http://127.0.0.1:8000/api/other-projects/${id}/`, {
+      await fetch(`https://backend-nine-beta-78.vercel.app/api/other-projects/${id}/`, {
         method: "DELETE",
         headers: {
         Authorization: `Bearer ${token}`,
@@ -293,8 +293,8 @@ const handleOfferSubmit = async (e) => {
   try {
     const res = await fetch(
       isEditing
-        ? `http://127.0.0.1:8000/apis/tech/${offerForm.id}/`
-        : `http://127.0.0.1:8000/apis/tech/`,
+        ? `https://backend-nine-beta-78.vercel.app/apis/tech/${offerForm.id}/`
+        : `https://backend-nine-beta-78.vercel.app/apis/tech/`,
       {
         method: isEditing ? 'PUT' : 'POST',
         headers: {
@@ -341,7 +341,7 @@ const handleOfferSubmit = async (e) => {
   const deleteOffer = async(id) => {
     const token = localStorage.getItem("access");
 
-      await fetch(`http://127.0.0.1:8000/apis/tech/${id}/`, {
+      await fetch(`https://backend-nine-beta-78.vercel.app/apis/tech/${id}/`, {
         method: "DELETE",
         headers: {
         Authorization: `Bearer ${token}`,
@@ -353,7 +353,7 @@ const handleOfferSubmit = async (e) => {
     const deleteMessage = async (id) => {
       const token = localStorage.getItem("access");
 
-      await fetch(`http://127.0.0.1:8000/apic/messages/${id}/delete/`, {
+      await fetch(`https://backend-nine-beta-78.vercel.app/apic/messages/${id}/delete/`, {
         method: "DELETE",
         headers: {
         Authorization: `Bearer ${token}`,
