@@ -58,7 +58,7 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-   "https://myprortfolio.vercel.app/" , 
+   "https://myprortfolio.vercel.app" , 
      "http://localhost:3000"
 ]
 
