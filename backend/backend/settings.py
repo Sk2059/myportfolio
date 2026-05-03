@@ -189,4 +189,3 @@ SIMPLE_JWT = {
 # -----------------------
 # ROUTING
 # -----------------------
-APPEND_SLASH = False
