@@ -11,3 +11,7 @@ PyJWT==2.10.1
 python-dotenv==1.2.2
 sqlparse==0.5.4
 tzdata==2025.2
+cloudinary==1.35.0
+django-cloudinary-storage==0.9.1
+whitenoise==6.8.2
+gunicorn==21.2.0

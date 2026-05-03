@@ -4,6 +4,7 @@ Production-ready version for Vercel + Supabase/PostgreSQL
 """
 from dotenv import load_dotenv
 import os
+import cloudinary
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
@@ -36,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
 
     'corsheaders',
@@ -46,8 +49,7 @@ INSTALLED_APPS = [
     'contacts',
     'services',
 
-    "cloudinary",
-    "cloudinary_storage",
+    
 ]
 
 
@@ -138,7 +140,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dz5eimki6',
     'API_KEY': '366297628672883',
@@ -147,12 +149,13 @@ CLOUDINARY_STORAGE = {
 # -----------------------
 # STATIC / MEDIA
 # -----------------------
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # -----------------------
