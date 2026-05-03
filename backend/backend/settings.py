@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'projects',
     'contacts',
     'services',
+
+    "cloudinary",
+    "cloudinary_storage",
 ]
 
 
@@ -135,10 +138,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dz5eimki6',
+    'API_KEY': '366297628672883',
+    'API_SECRET': 'bzJdUHqu5in4Z31gmOpLP2Jz_c0',
+}
 # -----------------------
 # STATIC / MEDIA
 # -----------------------
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
