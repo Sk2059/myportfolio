@@ -142,9 +142,9 @@ USE_TZ = True
 
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dz5eimki6',
-    'API_KEY': '366297628672883',
-    'API_SECRET': 'bzJdUHqu5in4Z31gmOpLP2Jz_c0',
+    'CLOUD_NAME': os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    'API_KEY': os.environ.get("CLOUDINARY_API_KEY"),
+    'API_SECRET': os.environ.get("CLOUDINARY_API_SECRET"),
 }
 # -----------------------
 # STATIC / MEDIA
