@@ -138,8 +138,8 @@ const Admin = () => {
   try {
     const res = await fetch(
       isEditing
-        ? `https://backend-nine-beta-78.vercel.app//api/featured/${projectForm.id}/`
-        : `https://backend-nine-beta-78.vercel.app//api/featured/`,
+        ? `https://backend-nine-beta-78.vercel.app/api/featured/${projectForm.id}/`
+        : `https://backend-nine-beta-78.vercel.app/api/featured/`,
       {
         method: isEditing ? 'PATCH' : 'POST', // ✅ PATCH is safer
         body: formData, // ❌ no Content-Type header
