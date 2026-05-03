@@ -1,13 +1,13 @@
 """
 Django settings for backend project.
-Production-ready version for Render + Supabase/PostgreSQL
+Production-ready version for Vercel + Supabase/PostgreSQL
 """
 from dotenv import load_dotenv
 import os
+import cloudinary
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
-
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,15 +16,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # -----------------------
 # SECURITY
 # -----------------------
-SECRET_KEY = os.environ.get("SECRET_KEY", "change-this-before-deploy")
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "change-this-in-vercel"
+)
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS",
-    "localhost,127.0.0.1",
-    "https://myprortfolio.vercel.app",
-).split(",")
+ALLOWED_HOSTS = [
+    "*",
+]
 
 
 # -----------------------
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
     'projects',
     'contacts',
     'services',
+
+    
 ]
 
 
@@ -55,11 +58,13 @@ INSTALLED_APPS = [
 # -----------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',       # must be 2nd
-    'corsheaders.middleware.CorsMiddleware',            # must be before CommonMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -71,19 +76,16 @@ MIDDLEWARE = [
 # -----------------------
 CORS_ALLOW_ALL_ORIGINS = False
 
-CORS_ALLOWED_ORIGINS = os.environ.get(
-    "CORS_ALLOWED_ORIGINS",
-    "http://localhost:3000"
-).split(",")
-
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://myprortfolio.vercel.app",
+    "http://localhost:3000",
+]
 
 
 # -----------------------
 # URLS
 # -----------------------
 ROOT_URLCONF = 'backend.urls'
-APPEND_SLASH = False
 
 
 # -----------------------
@@ -108,13 +110,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # -----------------------
-# DATABASE — Supabase via DATABASE_URL
+# DATABASE
+# Uses Vercel/Supabase env var automatically
 # -----------------------
 DATABASES = {
     "default": dj_database_url.config(
         default=os.environ.get("DATABASE_URL"),
         conn_max_age=600,
-        ssl_require=True,
+        ssl_require=True
     )
 }
 
@@ -139,36 +142,26 @@ USE_I18N = True
 USE_TZ = True
 
 
-# -----------------------
-# CLOUDINARY — media file storage
-# -----------------------
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get("CLOUDINARY_CLOUD_NAME"),
-    'API_KEY':    os.environ.get("CLOUDINARY_API_KEY"),
+    'API_KEY': os.environ.get("CLOUDINARY_API_KEY"),
     'API_SECRET': os.environ.get("CLOUDINARY_API_SECRET"),
 }
-
-
 # -----------------------
 # STATIC / MEDIA
 # -----------------------
-STATIC_URL  = '/static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL   = '/media/'
 
 STORAGES = {
-    # Media files → Cloudinary
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    # Static files → WhiteNoise (served by Gunicorn on Render)
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
-
 # -----------------------
 # DEFAULT PK
 # -----------------------
@@ -176,35 +169,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # -----------------------
-# DRF + JWT
+# DRF / JWT
 # -----------------------
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    # Public GET endpoints (projects, services) use AllowAny in their views.
-    # Write endpoints remain protected.
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ),
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME':  timedelta(hours=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 
 # -----------------------
-# SECURITY HEADERS (production only)
+# ROUTING
 # -----------------------
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER        = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT            = True
-    SESSION_COOKIE_SECURE          = True
-    CSRF_COOKIE_SECURE             = True
-    SECURE_HSTS_SECONDS            = 31536000   # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD            = True
-    SECURE_CONTENT_TYPE_NOSNIFF    = True
+APPEND_SLASH = False
