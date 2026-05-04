@@ -75,12 +75,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://myprortfolio.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://myprortfolio.onrender.com",
 ]
 
 
@@ -233,5 +235,5 @@ if not DEBUG:
 
     CORS_ALLOWED_ORIGINS = os.environ.get(
         "CORS_ALLOWED_ORIGINS",
-        "https://myprortfolio.vercel.app"
+        "https://myprortfolio.vercel.app,https://myprortfolio.onrender.com"
     ).split(",")
