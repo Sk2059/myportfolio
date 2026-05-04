@@ -18,13 +18,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # -----------------------
 SECRET_KEY = os.environ.get("SECRET_KEY", "local-dev-secret-change-in-production")
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS",
-    "myprortfolio.onrender.com"
-).split(",")
-
+ALLOWED_HOSTS = [
+    "myprortfolio.onrender.com",
+    "localhost",
+    "127.0.0.1"
+]
 
 # -----------------------
 # APPS
@@ -71,17 +71,13 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://myprortfolio.vercel.app",
     "https://myprortfolio.onrender.com",
+    "http://localhost:5173",
 ]
 
-CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "https://myprortfolio.vercel.app",
     "https://myprortfolio.onrender.com",
 ]
 
