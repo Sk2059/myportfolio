@@ -49,7 +49,7 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      await axios.post('https://backend-nine-beta-78.vercel.app/apic/contact/', formData, {
+      await axios.post('http://127.0.0.1:8000/apic/contact/', formData, {
         headers: { 'Content-Type': 'application/json' },
       });
       setSubmitStatus('success');
