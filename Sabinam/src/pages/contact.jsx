@@ -49,7 +49,7 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      await axios.post('http://127.0.0.1:8000/apic/contact/', formData, {
+      await axios.post('https://myprortfolio.onrender.com/apic/contact/', formData, {
         headers: { 'Content-Type': 'application/json' },
       });
       setSubmitStatus('success');
