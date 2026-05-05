@@ -167,9 +167,13 @@ CLOUDINARY_STORAGE = {
 # -----------------------
 # STATIC / MEDIA
 # -----------------------
-STATIC_URL  = '/static/'
+
+
+
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL   = '/media/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STORAGES = {
     "default": {
