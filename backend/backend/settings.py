@@ -174,6 +174,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 
+# ✅ IMPORTANT: keep ONLY ONE static system (no duplication conflicts)
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STORAGES = {
@@ -185,6 +186,8 @@ STORAGES = {
     },
 }
 
+# Prevent collectstatic crash if some DRF assets are missing
+WHITENOISE_MANIFEST_STRICT = False
 
 # -----------------------
 # DEFAULT PK
@@ -196,21 +199,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # DRF + JWT
 # -----------------------
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    # ✅ FIXED: was IsAuthenticated — blocked all public API calls
-    # Public GET requests (projects, services, featured) now work
-    # POST/PUT/DELETE still require a valid JWT token
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ),
-}
 
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME':  timedelta(hours=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    # ✅ safe for production APIs (prevents DRF bootstrap/static issues)
+    "DEFAULT_RENDERER_CLASSES": (
+        "rest_framework.renderers.JSONRenderer",
+    ),
+
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ),
 }
 
 
